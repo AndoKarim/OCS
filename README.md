@@ -14,3 +14,12 @@ Luc est un étudiant qui vit seul. Il ne possède pas de lave linge. Il doit se 
 
 Jean est un homme très occupé. Il n'a pas le temps de s'occuper de son linge. En fin de journée, il met ses vêtements dans son panier à linge, et une ou deux fois par semaines (lorsqu'il y pense) il utilise son lave linge en mettant le maximum de vêtements. 
 Mais il a souvent le problème d'être à court de produit pour nettoyer le linge. Il aimerait bien avoir quelque chose d'automatique pour lui rappeler à l'avance qu'il va être à court de produit, en fonction des machines déjà faites. 
+
+# Notre solution
+
+Notre idée est la suivante. Proposer un panier à linges connecté. Il sera doté d'un capteur de poids, qui peut être programmé en fonction de la capacité de notre lave linge. Grâce à cela, on peut être notifié sur notre smartphone lorsque le moment est propice pour lancer une machine. On peut aussi indiquer sur notre smartphone le volume de notre produit de lave linge, afin d'estimer le nombre de machines à faire et savoir à l'avance lorsque l'on sera à court de produit. 
+Cette innovation permettra d'économiser du temps, de l'energie, de l'argent mais aussi d'être écologique en évitant des machines qui n'utilisent pas la totalité de la capacité du lave linge.
+
+
+
+
