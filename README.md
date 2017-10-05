@@ -3,7 +3,7 @@
 # Groupe
 - Andolerzak Abdelkarim (SI5 Caspar, ex SI4)
 - Ghira Anasse (SI5 Caspar, ex SI4)
-- Selmi Helmi (SI5 IAM)
+- Sahli Helmi (SI5 IAM)
 
 # Scenario d'utilisation 
 
