@@ -1,13 +1,15 @@
 # Panier à linges connecté
 
-# Croquis
-https://scontent-cdg2-1.xx.fbcdn.net/v/t35.0-12/22450819_10214582373092721_767996947_o.jpg?oh=1c2d36045d1aa1faf4eee4d33fa0a9b5&oe=59DF0F38
-
-
 # Groupe
 - Andolerzak Abdelkarim (SI5 Caspar, ex SI4)
 - Ghira Anasse (SI5 Caspar, ex SI4)
 - Sahli Helmi (SI5 IAM)
+
+# Description
+
+SmartPLS(Smart Panier à Linge Salle):Il s'agit d'un panier à linge salle Intelligent qui peut être  installé à chaque maison.
+Notre Panier connecté nous permet de Controller toute  la chaine liée à  notre linge salle vers  la machine à laver. SmartPLS nous fournit plusieurs Web Services comme quand on peut fonctionner la machine a laver en prendre en considération la tarification au niveau d'électricité, aussi, le météo de sorte on sait quand mettre en marche notre machine à laver de sorte qu'il va prendre moins de temps pour sécher les vêtements en prenant compte le vent en consommant un web service de Météo. En Addition, notre système intelligent prends en considération le planning du temps de chaque membre de famille en utilisant l 'api de Google Calender pour faire une priorité dans les vêtements qui vont être le plus prioritaire pour la machine à laver.
+
 
 # Scenario d'utilisation 
 
@@ -21,7 +23,7 @@ Mais il a souvent le problème d'être à court de produit pour nettoyer le ling
 
 # Notre solution
 
-Notre idée est la suivante. Proposer un panier à linges connecté. Il sera doté d'un capteur de poids, qui peut être programmé en fonction de la capacité de notre lave linge. Grâce à cela, on peut être notifié sur notre smartphone lorsque le moment est propice pour lancer une machine. On peut aussi indiquer sur notre smartphone le volume de notre produit de lave linge, afin d'estimer le nombre de machines à faire et savoir à l'avance lorsque l'on sera à court de produit. 
+Notre idée est la suivante. Proposer un panier à linges connecté. Il sera doté d'un capteur de pression qui va nous indiquer le poids du panier, qui peut être programmé en fonction de la capacité de notre lave linge. Grâce à cela, on peut être notifié sur notre smartphone lorsque le moment est propice pour lancer une machine. On peut aussi indiquer sur notre smartphone le volume de notre produit de lave linge, afin d'estimer le nombre de machines à faire et savoir à l'avance lorsque l'on sera à court de produit. 
 Cette innovation permettra d'économiser du temps, de l'energie, de l'argent mais aussi d'être écologique en évitant des machines qui n'utilisent pas la totalité de la capacité du lave linge.
 
 
