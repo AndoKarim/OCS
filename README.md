@@ -5,11 +5,14 @@
 - Ghira Anasse (SI5 Caspar, ex SI4)
 - Sahli Helmi (SI5 IAM)
 
+# Croquis		
+https://scontent-cdg2-1.xx.fbcdn.net/v/t35.0-12/22450819_10214582373092721_767996947_o.jpg?oh=1c2d36045d1aa1faf4eee4d33fa0a9b5&oe=59DF0F38
+
 # Description
 
-SmartPLS(Smart Panier à Linge Salle):Il s'agit d'un panier à linge salle Intelligent qui peut être  installé à chaque maison.
-Notre Panier connecté nous permet de Controller toute  la chaine liée à  notre linge salle vers  la machine à laver. SmartPLS nous fournit plusieurs Web Services comme quand on peut fonctionner la machine a laver en prendre en considération la tarification au niveau d'électricité, aussi, le météo de sorte on sait quand mettre en marche notre machine à laver de sorte qu'il va prendre moins de temps pour sécher les vêtements en prenant compte le vent en consommant un web service de Météo. En Addition, notre système intelligent prends en considération le planning du temps de chaque membre de famille en utilisant l 'api de Google Calender pour faire une priorité dans les vêtements qui vont être le plus prioritaire pour la machine à laver.
-
+SmartPLS(Smart Panier à Linge Salle) est un panier à linge salle intelligent qui peut être  installé dans chaque maison.
+Notre Panier connecté nous permet de controller toute  la chaine liée à notre linge salle vers la machine à laver. 
+SmartPLS nous fournit plusieurs Web Services comme le moment où l'on peut lancer une machine en considération le prix de l'eau à ce moment, l'éléctricité et la météo, de sorte à lancer une machine le jour où du vent est annoncé, et ainsi profiter de cette météo pour sécher son linge plus rapidement. Le panier peut de plus estimer la consommation de produit pour lave linge en fonction des machines déjà faites, et alerter les utilisateurs de la fin proche de ce produit, afin de ne pas tomber en panne.
 
 # Scenario d'utilisation 
 
