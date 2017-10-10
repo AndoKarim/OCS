@@ -1,5 +1,9 @@
 # Panier à linges connecté
 
+# Croquis
+https://scontent-cdg2-1.xx.fbcdn.net/v/t35.0-12/22450819_10214582373092721_767996947_o.jpg?oh=1c2d36045d1aa1faf4eee4d33fa0a9b5&oe=59DF0F38
+
+
 # Groupe
 - Andolerzak Abdelkarim (SI5 Caspar, ex SI4)
 - Ghira Anasse (SI5 Caspar, ex SI4)
