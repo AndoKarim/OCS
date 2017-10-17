@@ -30,6 +30,9 @@ Mais il a souvent le problème d'être à court de produit pour nettoyer le ling
 Notre idée est la suivante. Proposer un panier à linges connecté. Il sera doté d'un capteur de pression qui va nous indiquer le poids du panier, qui peut être programmé en fonction de la capacité de notre lave linge. Grâce à cela, on peut être notifié sur notre smartphone lorsque le moment est propice pour lancer une machine. On peut aussi indiquer sur notre smartphone le volume de notre produit de lave linge, afin d'estimer le nombre de machines à faire et savoir à l'avance lorsque l'on sera à court de produit. 
 Cette innovation permettra d'économiser du temps, de l'energie, de l'argent mais aussi d'être écologique en évitant des machines qui n'utilisent pas la totalité de la capacité du lave linge.
 
+# Ressources
+Heures creuses de l'éléctricité https://observatoires.net/heures-creuses/nice
+
 
 
 
