@@ -15,8 +15,6 @@ function askRasp(param, callback){
   };
 
   http.request(options, function(res) {
-    console.log('STATUS: ' + res.statusCode);
-    console.log('HEADERS: ' + JSON.stringify(res.headers));
     res.setEncoding('utf8');
     res.on('data', function (chunk) {
       console.log('BODY: ' + chunk);
@@ -24,7 +22,28 @@ function askRasp(param, callback){
      // console.log("BKVKBKB",res);
     });
   }).write(data);
-}
+};
+
+
+
+function askExternal(param,callback){
+  var url = "anasghira.com"
+  var data = JSON.stringify({"data":"data"});
+  var options = {
+    host: url,
+    path: '/OCS/api.php?'+param,
+    method: 'GET'
+  };
+
+  http.request(options, function(res) {
+    res.setEncoding('utf8');
+    res.on('data', function (chunk) {
+      console.log('BODY: ' + chunk);
+      var chunkJSON = JSON.parse(chunk);
+      callback(chunkJSON.prix);
+    });
+  }).write(data);
+};
 
 //Serveur
 
@@ -33,7 +52,7 @@ function askRasp(param, callback){
 var express = require('express'); 
 // Nous définissons ici les paramètres du serveur.
 //var hostname = '192.168.1.114'; 
-var hostname = '192.168.0.22'; 
+var hostname = '172.19.250.230'; 
 
 var port = 3000; 
 
@@ -60,28 +79,10 @@ myRouter.route('/')
     paramstr = paramstr.substring(1);
     console.log("aaa",paramstr);
     askRasp(paramstr,function(resp){  
-    var respoJSON = JSON.parse(resp);
-    
-    res.json({message : "Réponse de la RASP = "+respoJSON.message, methode : req.method, parametre : param});
-});
-})
-
-
-
-//POST
-.post(function(req,res){
-
-      res.json({message : "Ajoute une nouvelle piscine à la liste", methode : req.method});
-})
-//PUT
-.put(function(req,res){ 
-      res.json({message : "Mise à jour des informations d'une piscine dans la liste", methode : req.method});
-})
-//DELETE
-.delete(function(req,res){ 
-res.json({message : "Suppression d'une piscine dans la liste", methode : req.method});  
-}); 
-
+      var respoJSON = JSON.parse(resp);
+      res.json({message : "Réponse de la RASP = "+respoJSON.message, methode : req.method, parametre : param});
+    });
+  });
 
 //ROUTE NOTIFY QUAND LA RASP NOUS ANNONCE PAR EXEMPLE QUE LE PANIER EST FULL
 myRouter.route('/notify')
@@ -89,27 +90,23 @@ myRouter.route('/notify')
 .get(function(req,res){ 
     var param = req.query;
     var poidsPanier;
+    var date = new Date();
+    var hour =""+date.getHours();
+    hour=(hour.length===1?"0":'')+hour;
     for(var i in param){
       if(i=="poids")
         poidsPanier = param[i];
     }
+
+    //Si le panier n'est pas tout à fait rempli mais peut être vaut la peine d'être lavé.
+    if(poidsPanier<80){
+      askExternal("heure="+hour,function(price){
+        console.log("Prix de l'éléctricité à cette heure : ",price);
+      })
+    }
     console.log("POIDS DU PANIER: ",poidsPanier);
-})
+});
 
-
-//POST
-.post(function(req,res){
-
-      res.json({message : "Ajoute une nouvelle piscine à la liste", methode : req.method});
-})
-//PUT
-.put(function(req,res){ 
-      res.json({message : "Mise à jour des informations d'une piscine dans la liste", methode : req.method});
-})
-//DELETE
-.delete(function(req,res){ 
-res.json({message : "Suppression d'une piscine dans la liste", methode : req.method});  
-}); 
 // Nous demandons à l'application d'utiliser notre routeur
 app.use(myRouter);  
 
@@ -117,4 +114,3 @@ app.use(myRouter);
 app.listen(port, hostname, function(){
   console.log("Mon serveur fonctionne sur http://"+ hostname +":"+port); 
 });
-
