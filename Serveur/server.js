@@ -5,7 +5,7 @@ var http = require('http');
 function askRasp(param, callback){
  // var url = "192.168.1.155"
 
-  var url = "192.168.0.33"
+  var url = "192.168.1.155"
   var data = JSON.stringify({"data":"data"});
   var options = {
     host: url,
@@ -51,8 +51,8 @@ function askExternal(param,callback){
 //La variable express nous permettra d'utiliser les fonctionnalités du module Express.  
 var express = require('express'); 
 // Nous définissons ici les paramètres du serveur.
-//var hostname = '192.168.1.114'; 
-var hostname = '172.19.250.230'; 
+var hostname = '192.168.1.114'; 
+//var hostname = '172.19.250.230'; 
 
 var port = 3000; 
 
@@ -80,7 +80,7 @@ myRouter.route('/')
     console.log("aaa",paramstr);
     askRasp(paramstr,function(resp){  
       var respoJSON = JSON.parse(resp);
-      res.json({message : "Réponse de la RASP = "+respoJSON.message, methode : req.method, parametre : param});
+      res.json({message : "Réponse de la RASP = "+respoJSON.message});
     });
   });
 
