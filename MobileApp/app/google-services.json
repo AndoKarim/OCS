@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "580265087526",
+    "firebase_url": "https://ocs2017-2e6f2.firebaseio.com",
+    "project_id": "ocs2017-2e6f2",
+    "storage_bucket": "ocs2017-2e6f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580265087526:android:87c97fad52ff1802",
+        "android_client_info": {
+          "package_name": "panierconnecte.ocs.mobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580265087526-g1ircb2afurbidpd498ukere095oh71h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZ-O3GPaxZs3-rO6Nf4efo9Re_94E1_kM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

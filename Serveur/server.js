@@ -45,13 +45,15 @@ function askExternal(param,callback){
   }).write(data);
 };
 
+
+
 //Serveur
 
 //L'application requiert l'utilisation du module Express.
 //La variable express nous permettra d'utiliser les fonctionnalités du module Express.  
 var express = require('express'); 
 // Nous définissons ici les paramètres du serveur.
-var hostname = '192.168.1.114'; 
+var hostname = '192.168.43.231'; 
 //var hostname = '172.19.250.230'; 
 
 var port = 3000; 
