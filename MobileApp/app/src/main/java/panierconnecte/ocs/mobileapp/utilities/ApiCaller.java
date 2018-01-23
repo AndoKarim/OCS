@@ -49,7 +49,9 @@ public class ApiCaller {
                         responseApi = response;
                         try {
                             JSONObject jsonObject = new JSONObject(responseApi);
-                            String msg = jsonObject.get("message").toString()+"Kg";
+                            float poids = Float.parseFloat(jsonObject.get("message").toString());
+                            int valEntiere = (int) poids;
+                            String msg = getWeight(valEntiere);
                             MainActivity.apiArea.setText(msg);
                             MainActivity.progressBar.setVisibility(View.INVISIBLE);
 
@@ -69,6 +71,11 @@ public class ApiCaller {
 
         return responseApi;
 
+
+    }
+
+    private static String getWeight(int valEntiere) {
+        return valEntiere > 1000 ? valEntiere * 0.001 + "Kg" : valEntiere + "g";
 
     }
 }

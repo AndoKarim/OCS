@@ -3,6 +3,7 @@ package panierconnecte.ocs.mobileapp;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ public class Settings extends AppCompatActivity {
                 String address = serverEditText.getText().toString();
                 String refreshedToken = FirebaseInstanceId.getInstance().getToken();
                 editor.putString("TOKEN", refreshedToken);
+                Log.d("PUTAIN DE TOKEN", refreshedToken);
                 if (!address.equals(""))
                     editor.putString("ADDRESS", address);
                 else
