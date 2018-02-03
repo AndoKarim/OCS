@@ -57,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(this, Settings.class);
                 startActivity(i);
                 return true;
+            case R.id.availableMachine:
+                Intent j = new Intent(this, AvaiableMachinesActivity.class);
+                startActivity(j);
+                return true;
             default:
                 return false;
         }
