@@ -8,10 +8,28 @@ import java.io.Serializable;
 
 public class Machine implements Serializable {
     private String MachineId;
+    private String MachineName;
     private String Statut;
     private String TempsResteEnMinutes;
+    private String MachineImage;
 
     public Machine() {
+    }
+
+    public String getMachineName() {
+        return MachineName;
+    }
+
+    public void setMachineName(String machineName) {
+        MachineName = machineName;
+    }
+
+    public String getMachineImage() {
+        return MachineImage;
+    }
+
+    public void setMachineImage(String machineImage) {
+        MachineImage = machineImage;
     }
 
     public String getMachineId() {
@@ -42,8 +60,10 @@ public class Machine implements Serializable {
     public String toString() {
         return "Machine{" +
                 "MachineId='" + MachineId + '\'' +
+                ", MachineName='" + MachineName + '\'' +
                 ", Statut='" + Statut + '\'' +
                 ", TempsResteEnMinutes='" + TempsResteEnMinutes + '\'' +
+                ", MachineImage='" + MachineImage + '\'' +
                 '}';
     }
 }

@@ -34,6 +34,8 @@
 
         <activity android:name=".Settings"></activity>
         <activity android:name=".AvaiableMachinesActivity"></activity>
+        <activity android:name=".MachineActivity"></activity>
+
 
     </application>
 
