@@ -1,8 +1,11 @@
 package panierconnecte.ocs.mobileapp;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,6 +14,8 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
@@ -33,43 +38,51 @@ public class AvaiableMachinesActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_availablemachines);
+
         String ServiceURL = "https://webservicesocs.herokuapp.com/api/DispoMachines";
         machinesListVeiw = (ListView) findViewById(R.id.machines_lv);
         final String result = "";
         final ArrayList<Machine> machines = new ArrayList<>();
-        JsonObjectRequest jsonObjReq  = new JsonObjectRequest(Request.Method.GET, ServiceURL, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
+        JsonArrayRequest req = new JsonArrayRequest(ServiceURL,
+                new Response.Listener<JSONArray>() {
+                    @TargetApi(Build.VERSION_CODES.M)
+                    @Override
+                    public void onResponse(JSONArray response) {
 
-                try {
-                    JSONArray json = new JSONArray(result);
-                    for(int i=0;i<json.length();i++){
-                        JSONObject e = json.getJSONObject(i);
-                        Machine machine = new Machine();
-                        machine.setMachineId(e.getString("MachineId"));
-                        machine.setStatut(e.getString("Statut"));
-                        machine.setMachineImage(e.getString("MachineImage"));
-                        machine.setTempsResteEnMinutes(e.getString("TempsResteEnMinutes"));
-                        machines.add(machine);
+                        try
+                        {
+
+                            for(int i=0;i<response.length();i++){
+
+                                JSONObject e= (JSONObject) response.get(i);
+                                Machine machine = new Machine();
+                                System.out.println("machine id mte3i est : " + e.getString("MachineId"));
+                                machine.setMachineId(e.getString("MachineId"));
+                                machine.setStatut(e.getString("Staut"));
+                                machine.setMachineImage(e.getString("MachineImage"));
+                                machine.setTempsResteEnMinutes(e.getString("TempsResteEnMinutes"));
+                                machines.add(machine);
+                            }
+                            MachineAdapter arrayAdapter = new MachineAdapter(AvaiableMachinesActivity.this, machines);
+                            machinesListVeiw.setAdapter(arrayAdapter);
+
+
+                        }
+                        catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(AvaiableMachinesActivity.this, "BAD JSON ", Toast.LENGTH_SHORT).show();
+
+
+                        }
                     }
-                    MachineAdapter arrayAdapter = new MachineAdapter(AvaiableMachinesActivity.this, machines);
-                    machinesListVeiw.setAdapter(arrayAdapter);
-
-                } catch (JSONException e) {
-                    Toast.makeText(AvaiableMachinesActivity.this, "BAD JSON ", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }, new Response.ErrorListener() {
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
                 Toast.makeText(AvaiableMachinesActivity.this, "BAD REQUEST", Toast.LENGTH_SHORT).show();
-
-
             }
         });
-        AppController.getInstance(AvaiableMachinesActivity.this).addToRequestQueue(jsonObjReq);
-
+        // Adding request to request queue
+        AppController.getInstance(AvaiableMachinesActivity.this).addToRequestQueue(req);
         machinesListVeiw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override

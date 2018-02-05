@@ -17,14 +17,14 @@ import panierconnecte.ocs.mobileapp.R;
 import panierconnecte.ocs.mobileapp.models.Machine;
 
 /**
- * Created by Helmi on 03/02/2018.
+ * Created by user on 05/02/2018.
  */
 
-public class MachineAdapter extends ArrayAdapter<Machine> {
-
+public class DetailsMachineAdapter extends ArrayAdapter<Machine> {
     Context context;
-    public MachineAdapter(Context context, ArrayList<Machine> machines) {
-        super(context, 0, machines);
+
+    public DetailsMachineAdapter(Context context, ArrayList<Machine> devices) {
+        super(context, 0, devices);
         this.context = context;
     }
     @Override
@@ -32,13 +32,16 @@ public class MachineAdapter extends ArrayAdapter<Machine> {
 
         Machine machine = getItem(position);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_machine, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_machine, parent, false);
         }
-        TextView tvName = (TextView) convertView.findViewById(R.id.machine_name);
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.machine_image);
+        TextView machineNum = (TextView) convertView.findViewById(R.id.machine_numero);
+        TextView machineStatut = (TextView) convertView.findViewById(R.id.machine_statut);
+        TextView machineTemps = (TextView) convertView.findViewById(R.id.machine_tempsrestee);
+
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.machine_imageView);
         Picasso.with(context).load(Uri.parse(machine.getMachineImage())).into(imageView);
-        tvName.setText("La machine numero "+machine.getMachineId());
+        machineNum.setText("Machine numéro "+machine.getMachineId());
         return convertView;
     }
-
 }
+
