@@ -7,11 +7,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.List;
 
 import panierconnecte.ocs.mobileapp.utilities.ApiCaller;
 
@@ -20,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public static TextView apiArea;
     public static ProgressBar progressBar;
     public static Button getWeightButton;
+    public static ListView listPaniers;
 
 
     @Override
@@ -30,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         apiArea = (TextView) findViewById(R.id.resultApi);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         getWeightButton = (Button) findViewById(R.id.button);
+        listPaniers = (ListView) findViewById(R.id.listPaniers);
+        //listPaniers.setAdapter(new ArrayAdapter<String>());
 
         getWeightButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     private void fetchApi() {
 
         try {
-            ApiCaller.callApi(this);
+            ApiCaller.callWeightAPI(this);
         } catch (IOException e) {
             e.printStackTrace();
         }

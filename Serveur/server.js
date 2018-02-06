@@ -1,16 +1,21 @@
-//L'application requiert l'utilisation du module Express.
 //La variable express nous permettra d'utiliser les fonctionnalités du module Express.  
-var http = require('http'); 
+var http = require('http');
+//Config FCM
+var FCM = require('fcm-node');
+var serverKey = 'AAAAhxp-kiY:APA91bE9pjcDyMo25LfjXxzF8sd--mKFZ7iQO1OqcDHlfRA45j1y57JJ595NUxB6gYrDoJBkcaoL_L_qbGxois1DGpYyba0fV0RnMxR9tZON5XQsz5gPRhvsZcqsgEYKOYUUrFa7rl4P'; //put your server key here
+var fcm = new FCM(serverKey);
 
 function askRasp(param, callback){
  // var url = "192.168.1.155"
+ console.log(param);
 
-  var url = "192.168.1.155"
+  var url = "192.168.43.225"
   var data = JSON.stringify({"data":"data"});
   var options = {
     host: url,
     port: 3000,
-    path: '/api?'+param,
+   // port: 80,
+    path: '/api/?'+param,
     method: 'GET'
   };
 
@@ -47,6 +52,8 @@ function askExternal(param,callback){
 
 
 
+
+
 //Serveur
 
 //L'application requiert l'utilisation du module Express.
@@ -54,10 +61,7 @@ function askExternal(param,callback){
 var express = require('express'); 
 // Nous définissons ici les paramètres du serveur.
 var hostname = '192.168.43.231'; 
-//var hostname = '172.19.250.230'; 
-
 var port = 3000; 
-
 
 // Nous créons un objet de type Express. 
 var app = express(); 
@@ -81,8 +85,9 @@ myRouter.route('/')
     paramstr = paramstr.substring(1);
     console.log("aaa",paramstr);
     askRasp(paramstr,function(resp){  
-      var respoJSON = JSON.parse(resp);
-      res.json({message : "Réponse de la RASP = "+respoJSON.message});
+      //var respoJSON = JSON.parse(resp);
+      //res.json({message : respoJSON.message);
+      res.json({message : resp});
     });
   });
 
@@ -99,15 +104,45 @@ myRouter.route('/notify')
       if(i=="poids")
         poidsPanier = param[i];
     }
+    poidsPanier = parseInt(poidsPanier);
+    poidsPanier = poidsPanier>1000 ? (poidsPanier*0.001).toFixed(1) +"kg" : poidsPanier + "g";
 
     //Si le panier n'est pas tout à fait rempli mais peut être vaut la peine d'être lavé.
-    if(poidsPanier<80){
+    if(poidsPanier<8000){
       askExternal("heure="+hour,function(price){
         console.log("Prix de l'éléctricité à cette heure : ",price);
       })
     }
+
+    var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
+        to: 'fuHiC4mq1Yg:APA91bE9xjF_FQVHiOFBEb191m2EiqQKD5qe2QzeIr43yL2CdETPQaInN5eegct8X2UuSohPfNow2UFdS95xRfH9J9WOfKB6hXTUJf05O48HrKDsX6O6Gwdlv8YZBnKobpHO-jVmHmEh',
+        notification: {  //you can send only notification or only data(or include both)
+            title: 'Vide ta machine',
+            body: 'Ton panier pèse ' + poidsPanier
+        }
+    };
+
+    fcm.send(message, function(err, response){
+        if (err) {
+            console.log(err);
+            console.log("Something has gone wrong!");
+        } else {
+            console.log("Successfully sent with response: ", response);
+        }
+    });
     console.log("POIDS DU PANIER: ",poidsPanier);
 });
+
+/*
+myRouter.route('/addDevice')
+
+.get(function(req,res){
+
+
+}
+
+
+);*/
 
 // Nous demandons à l'application d'utiliser notre routeur
 app.use(myRouter);  
