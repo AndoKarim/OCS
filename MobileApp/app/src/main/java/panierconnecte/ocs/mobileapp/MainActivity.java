@@ -1,20 +1,23 @@
 package panierconnecte.ocs.mobileapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com._8rine.upnpdiscovery.UPnPDevice;
+import com._8rine.upnpdiscovery.UPnPDiscovery;
+
 import java.io.IOException;
-import java.util.List;
+import java.util.HashSet;
 
 import panierconnecte.ocs.mobileapp.utilities.ApiCaller;
 
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public static ProgressBar progressBar;
     public static Button getWeightButton;
     public static ListView listPaniers;
+    private SharedPreferences sharedPreferences;
 
 
     @Override
@@ -33,17 +37,21 @@ public class MainActivity extends AppCompatActivity {
 
         apiArea = (TextView) findViewById(R.id.resultApi);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        getWeightButton = (Button) findViewById(R.id.button);
+        //getWeightButton = (Button) findViewById(R.id.button);
         listPaniers = (ListView) findViewById(R.id.listPaniers);
+
+        sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
+
         //listPaniers.setAdapter(new ArrayAdapter<String>());
 
-        getWeightButton.setOnClickListener(new View.OnClickListener() {
+
+      /*  getWeightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
                 fetchApi();
             }
-        });
+        });*/
 
 
     }
@@ -67,9 +75,45 @@ public class MainActivity extends AppCompatActivity {
                 Intent j = new Intent(this, AvaiableMachinesActivity.class);
                 startActivity(j);
                 return true;
+            case R.id.refreshBox:
+                refreshBalances();
+                return true;
+            case R.id.addBalance:
+                Intent tutorial = new Intent(MainActivity.this, SlideActivity.class);
+                startActivity(tutorial);
             default:
                 return false;
         }
+    }
+
+    private void refreshBalances() {
+        UPnPDiscovery.discoveryDevices(MainActivity.this, new UPnPDiscovery.OnDiscoveryListener() {
+            @Override
+            public void OnStart() {
+            }
+
+            @Override
+            public void OnFoundNewDevice(UPnPDevice device) {
+            }
+
+            @Override
+            public void OnFinish(HashSet<UPnPDevice> devices) {
+                for (UPnPDevice device : devices) {
+                    if (device.getFriendlyName().equals("BoxBalance")) {
+                        SharedPreferences.Editor e = sharedPreferences.edit();
+                        e.putString("BoxIP", device.getHostAddress());
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void OnError(Exception e) {
+                Log.d("UPnPDiscovery", "Error: " + e.getLocalizedMessage());
+            }
+        });
+
     }
 
 

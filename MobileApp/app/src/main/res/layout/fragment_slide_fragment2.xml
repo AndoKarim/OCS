@@ -1,0 +1,45 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="panierconnecte.ocs.mobileapp.SlideFragment2">
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vous allez maintenant pairer le panier"
+        android:layout_marginBottom="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Appuyez sur le bouton présent sur le panier."
+        android:layout_marginBottom="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cliquez ensuite sur le bouton PAIRER en bas de cette page."
+        />
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/tuto"
+        android:layout_marginLeft="60dp"/>
+
+    <Button
+        android:id="@+id/pairButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PAIRER"
+        android:layout_marginLeft="150dp"/>
+
+</LinearLayout>
+</FrameLayout>

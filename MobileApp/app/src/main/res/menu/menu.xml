@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/settings"
@@ -9,5 +10,18 @@
         android:id="@+id/availableMachine"
         android:icon="@android:drawable/ic_menu_manage"
         android:title="Machines Available" />
+
+    <item
+        android:id="@+id/refreshBox"
+        android:icon="@drawable/refresh"
+        app:showAsAction="always"
+        android:title="Refresh" />
+
+    <item
+        android:id="@+id/addBalance"
+        android:title="Add"
+        android:icon="@drawable/add"
+        app:showAsAction="always"/>
+
 
 </menu>

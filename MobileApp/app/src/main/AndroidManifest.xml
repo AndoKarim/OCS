@@ -11,15 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreen" >
-        <intent-filter>
+        <activity android:name=".SplashScreen">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MainActivity"></activity>
 
         <service android:name=".utilities.NotificationHandler">
             <intent-filter>
@@ -32,11 +31,10 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".Settings"></activity>
-        <activity android:name=".AvaiableMachinesActivity"></activity>
-        <activity android:name=".MachineActivity"></activity>
-
-
+        <activity android:name=".Settings" />
+        <activity android:name=".AvaiableMachinesActivity" />
+        <activity android:name=".MachineActivity" />
+        <activity android:name=".SlideActivity"></activity>
     </application>
 
 </manifest>

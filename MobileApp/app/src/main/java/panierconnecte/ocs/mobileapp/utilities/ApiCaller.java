@@ -125,4 +125,8 @@ public class ApiCaller {
         queue.add(stringRequest);
 
     }
+
+    public static void addPanier(String ip, String name) {
+
+    }
 }
