@@ -4,9 +4,16 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "apidoc": "^0.17.6",
+    "body-parser": "^1.18.2",
     "connect": "^3.6.5",
     "express": "^4.16.2",
+    "fcm-node": "^1.2.1",
     "server-static": "^2.0.5"
+  },
+  "apidoc": {
+    "title": "OCS - Balance Connectée",
+    "url": "https://localhost/OCS"
   },
   "devDependencies": {},
   "scripts": {
