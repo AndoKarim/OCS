@@ -1,12 +1,9 @@
 package panierconnecte.ocs.mobileapp.utilities;
 
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,7 +18,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import panierconnecte.ocs.mobileapp.MainActivity;
+import panierconnecte.ocs.mobileapp.views.MainActivity;
 
 /**
  * Created by Karim on 17/10/2017.

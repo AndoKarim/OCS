@@ -2,44 +2,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="panierconnecte.ocs.mobileapp.SlideFragment2">
+    android:background="@android:color/holo_blue_dark"
+    tools:context="panierconnecte.ocs.mobileapp.views.SlideFragment2">
 
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vous allez maintenant pairer le panier"
-        android:layout_marginBottom="30dp"/>
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Appuyez sur le bouton présent sur le panier."
-        android:layout_marginBottom="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="10dp"
+            android:text="Vous allez maintenant pairer le panier"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cliquez ensuite sur le bouton PAIRER en bas de cette page."
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="10dp"
+            android:text="Appuyez sur le bouton présent sur le panier."
+            android:textColor="@color/cardview_light_background"
+            android:textSize="18sp" />
 
-    <ImageView
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:src="@drawable/tuto"
-        android:layout_marginLeft="60dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:layout_marginLeft="10dp"
+            android:text="Cliquez ensuite sur le bouton TERMINER en bas de cette page."
+            android:textColor="@color/cardview_light_background"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/pairButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PAIRER"
-        android:layout_marginLeft="150dp"/>
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginLeft="50dp"
+            android:src="@drawable/tuto" />
 
-</LinearLayout>
+    </LinearLayout>
 </FrameLayout>

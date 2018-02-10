@@ -1,4 +1,4 @@
-package panierconnecte.ocs.mobileapp;
+package panierconnecte.ocs.mobileapp.views;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import panierconnecte.ocs.mobileapp.R;
 import panierconnecte.ocs.mobileapp.utilities.ApiCaller;
 
 public class Settings extends AppCompatActivity {
@@ -43,12 +44,11 @@ public class Settings extends AppCompatActivity {
                 Log.d(" TOKEN", firebaseToken);
                 if (!username.equals("")) {
                     editor.putString("USERNAME", username);
-                    if(!password.equals("")) {
+                    if (!password.equals("")) {
                         //Encrypter le mot de passe
-                        ApiCaller.loginAPI(getApplicationContext(),username, password,firebaseToken);
+                        ApiCaller.loginAPI(getApplicationContext(), username, password, firebaseToken);
                     }
-                }
-                else
+                } else
                     Toast.makeText(Settings.this, "Enter a valid address", Toast.LENGTH_SHORT).show();
 
                 editor.commit();
@@ -57,6 +57,6 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        
+
     }
 }

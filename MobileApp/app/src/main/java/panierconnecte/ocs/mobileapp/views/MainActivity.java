@@ -1,4 +1,4 @@
-package panierconnecte.ocs.mobileapp;
+package panierconnecte.ocs.mobileapp.views;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +19,7 @@ import com._8rine.upnpdiscovery.UPnPDiscovery;
 import java.io.IOException;
 import java.util.HashSet;
 
+import panierconnecte.ocs.mobileapp.R;
 import panierconnecte.ocs.mobileapp.utilities.ApiCaller;
 
 public class MainActivity extends AppCompatActivity {

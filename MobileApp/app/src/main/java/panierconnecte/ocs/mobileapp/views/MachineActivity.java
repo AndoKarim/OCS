@@ -1,4 +1,4 @@
-package panierconnecte.ocs.mobileapp;
+package panierconnecte.ocs.mobileapp.views;
 
 import android.content.Intent;
 import android.net.Uri;

@@ -1,4 +1,4 @@
-package panierconnecte.ocs.mobileapp;
+package panierconnecte.ocs.mobileapp.views;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,8 @@ import android.view.Window;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import panierconnecte.ocs.mobileapp.R;
 
 /**
  * Created by user on 23/01/2018.

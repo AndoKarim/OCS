@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="panierconnecte.ocs.mobileapp.Settings">
+    tools:context="panierconnecte.ocs.mobileapp.views.Settings">
 
     <ScrollView
         android:id="@+id/login_form"

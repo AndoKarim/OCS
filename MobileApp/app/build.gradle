@@ -39,13 +39,12 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
 
-
-
     compile 'com.majeur.cling:cling:1.1'
     compile 'com.github.custanator:upnpdiscovery:1.0.1'
+    compile 'com.github.apl-devs:appintro:v4.2.2'
+
 
 
     testCompile 'junit:junit:4.12'
-    implementation files('libs/cybergarage-upnp-core-2.1.1.jar')
 }
 apply plugin: 'com.google.gms.google-services'
