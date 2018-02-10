@@ -1,27 +1,30 @@
 package panierconnecte.ocs.mobileapp.views;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import panierconnecte.ocs.mobileapp.R;
+import panierconnecte.ocs.mobileapp.models.Panier;
 
 /**
  * Created by Karim on 10/02/2018.
  */
 
 
-public class PanierAdapter extends ArrayAdapter<String> {
+public class PanierAdapter extends ArrayAdapter<ArrayList> {
     private final Context context;
-    private final String[] values;
+    private final ArrayList<Panier> paniers;
 
-    public PanierAdapter(Context context, String[] values) {
-        super(context, -1, values);
+    public PanierAdapter(Context context, ArrayList paniers) {
+        super(context, -1, paniers);
         this.context = context;
-        this.values = values;
+        this.paniers = paniers;
     }
 
     @Override
@@ -29,6 +32,15 @@ public class PanierAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.activity_panier_adapter, parent, false);
+
+        Panier panier = paniers.get(position);
+
+        TextView panierNameTextView = convertView.findViewById(R.id.panierNameTextView);
+        TextView panierWeight = convertView.findViewById(R.id.poidsBalanceTextview);
+
+        panierNameTextView.setText(panier.getName());
+        panierWeight.setText(String.valueOf(panier.getWeight()));
+
         return rowView;
     }
 }
