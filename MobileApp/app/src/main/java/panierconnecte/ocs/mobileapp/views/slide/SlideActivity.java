@@ -1,4 +1,4 @@
-package panierconnecte.ocs.mobileapp.views;
+package panierconnecte.ocs.mobileapp.views.slide;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

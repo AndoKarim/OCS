@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_dark"
-    tools:context="panierconnecte.ocs.mobileapp.views.SlideFragment2">
+    tools:context="panierconnecte.ocs.mobileapp.views.slide.SlideFragment2">
 
 
     <LinearLayout

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import butterknife.ButterKnife;
+import panierconnecte.ocs.mobileapp.R;
 import panierconnecte.ocs.mobileapp.models.Machine;
 
 /**
@@ -29,15 +30,15 @@ public class MachineActivity extends AppCompatActivity {
 
         setTitle("Machine numéro " + machine.getMachineId());
 
-        ImageView imageView = (ImageView)findViewById(R.id.machine_imageView);
-        TextView numero = (TextView)findViewById(R.id.machine_numero);
-        TextView statut = (TextView)findViewById(R.id.machine_statut);
-        TextView tempsreste = (TextView)findViewById(R.id.machine_tempsrestee);
+        ImageView imageView = (ImageView) findViewById(R.id.machine_imageView);
+        TextView numero = (TextView) findViewById(R.id.machine_numero);
+        TextView statut = (TextView) findViewById(R.id.machine_statut);
+        TextView tempsreste = (TextView) findViewById(R.id.machine_tempsrestee);
 
         Picasso.with(getApplicationContext()).load(Uri.parse(machine.getMachineImage())).into(imageView);
-        numero.setText("Machine "+machine.getMachineId());
+        numero.setText("Machine " + machine.getMachineId());
         statut.setText(machine.getStatut());
-        tempsreste.setText(machine.getTempsResteEnMinutes()+" minutes");
+        tempsreste.setText(machine.getTempsResteEnMinutes() + " minutes");
 
     }
 }

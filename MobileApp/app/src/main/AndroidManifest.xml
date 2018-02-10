@@ -35,7 +35,7 @@
         <activity android:name=".views.Settings" />
         <activity android:name=".views.AvaiableMachinesActivity" />
         <activity android:name=".views.MachineActivity" />
-        <activity android:name=".views.SlideActivity" />
+        <activity android:name=".views.slide.SlideActivity" />
     </application>
 
 </manifest>

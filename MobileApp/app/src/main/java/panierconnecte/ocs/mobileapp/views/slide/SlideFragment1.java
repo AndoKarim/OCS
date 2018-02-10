@@ -1,4 +1,4 @@
-package panierconnecte.ocs.mobileapp.views;
+package panierconnecte.ocs.mobileapp.views.slide;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
