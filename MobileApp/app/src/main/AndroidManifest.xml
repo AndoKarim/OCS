@@ -3,6 +3,7 @@
     package="panierconnecte.ocs.mobileapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -11,14 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreen">
+        <activity android:name=".views.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".views.MainActivity" />
 
         <service android:name=".utilities.NotificationHandler">
             <intent-filter>
@@ -31,10 +32,10 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".Settings" />
-        <activity android:name=".AvaiableMachinesActivity" />
-        <activity android:name=".MachineActivity" />
-        <activity android:name=".SlideActivity"></activity>
+        <activity android:name=".views.Settings" />
+        <activity android:name=".views.AvaiableMachinesActivity" />
+        <activity android:name=".views.MachineActivity" />
+        <activity android:name=".views.slide.SlideActivity" />
     </application>
 
 </manifest>

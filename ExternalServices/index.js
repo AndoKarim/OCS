@@ -5,12 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-
-router.get('/test', function(req, res){
-	var	responseObject = {messages : 'OK'};
-	res.send(responseObject);
-})
-
+/* Get Electricity Consumption per hour*/
 router.get('/api/consommation', function(req, res, next){
 	var	heure = req.param('heure');
 	var responseObject = [ 
@@ -74,3 +69,42 @@ router.get('/api/consommation', function(req, res, next){
   });
 
 });
+/* Get Available Machines*/
+app.get('/api/DispoMachines', function(req, res, next) {
+	var responseString= [ 
+        { "MachineId" :"01",
+          "Staut" : "occupee",
+          "MachineImage" : "http://helmisahli.000webhostapp.com/rouge.png",
+          "TempsResteEnMinutes" : "30" },
+        { "MachineId" :"02",
+          "Staut" : "libre",
+          "MachineImage" : "http://helmisahli.000webhostapp.com/vert.png",          
+          "TempsResteEnMinutes" : "00" }, 
+        { "MachineId" :"03",
+          "Staut" : "libre",
+          "MachineImage" : "http://helmisahli.000webhostapp.com/vert.png",          
+          "TempsResteEnMinutes" : "00" },
+        { "MachineId" :"04",
+          "Staut" : "libre",
+          "MachineImage" : "http://helmisahli.000webhostapp.com/vert.png",          
+          "TempsResteEnMinutes" : "00" }, 
+        { "MachineId" :"05",
+          "Staut" : "occupee",
+          "MachineImage" : "http://helmisahli.000webhostapp.com/rouge.png",          
+          "TempsResteEnMinutes" : "20" },
+        { "MachineId" :"06",
+          "Staut" : "occupee",
+          "MachineImage" : "http://helmisahli.000webhostapp.com/rouge.png",          
+          "TempsResteEnMinutes" : "50" },
+        { "MachineId" :"07",
+          "Staut" : "occupee",
+          "MachineImage" : "http://helmisahli.000webhostapp.com/rouge.png",          
+          "TempsResteEnMinutes" : "40" },
+        { "MachineId" :"08",
+          "Staut" : "libre",
+          "MachineImage" : "http://helmisahli.000webhostapp.com/vert.png",          
+          "TempsResteEnMinutes" : "00" }          
+       ];;
+	res.send(responseString);
+});
+app.listen(port);

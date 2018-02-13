@@ -1,4 +1,4 @@
-package panierconnecte.ocs.mobileapp;
+package panierconnecte.ocs.mobileapp.views;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,9 +17,14 @@ import com._8rine.upnpdiscovery.UPnPDevice;
 import com._8rine.upnpdiscovery.UPnPDiscovery;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 
+import panierconnecte.ocs.mobileapp.R;
+import panierconnecte.ocs.mobileapp.models.Panier;
 import panierconnecte.ocs.mobileapp.utilities.ApiCaller;
+import panierconnecte.ocs.mobileapp.views.adapter.PanierAdapter;
+import panierconnecte.ocs.mobileapp.views.slide.SlideActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,14 +40,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        apiArea = (TextView) findViewById(R.id.resultApi);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        //getWeightButton = (Button) findViewById(R.id.button);
-        listPaniers = (ListView) findViewById(R.id.listPaniers);
+        apiArea = findViewById(R.id.resultApi);
+        progressBar = findViewById(R.id.progressBar);
+        //getWeightButton =  findViewById(R.id.button);
+        listPaniers = findViewById(R.id.listPaniers);
 
         sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
 
-        //listPaniers.setAdapter(new ArrayAdapter<String>());
+        Panier panier1 = new Panier("Salle de bain", 13f, "0.0.0.0");
+        Panier panier2 = new Panier("Cuisine", 56f, "0.0.0.0");
+
+        ArrayList list = new ArrayList<>();
+        list.add(panier1);
+        list.add(panier2);
+
+        PanierAdapter panierAdapter = new PanierAdapter(getApplicationContext(), list);
+        listPaniers.setAdapter(panierAdapter);
 
 
       /*  getWeightButton.setOnClickListener(new View.OnClickListener() {

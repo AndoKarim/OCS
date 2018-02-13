@@ -1,12 +1,9 @@
 package panierconnecte.ocs.mobileapp.utilities;
 
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,7 +18,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import panierconnecte.ocs.mobileapp.MainActivity;
+import panierconnecte.ocs.mobileapp.views.MainActivity;
 
 /**
  * Created by Karim on 17/10/2017.
@@ -29,10 +26,9 @@ import panierconnecte.ocs.mobileapp.MainActivity;
 
 public class ApiCaller {
 
-    private static String responseApi = "TEST";
-    static SharedPreferences sharedPreferences;
     static final String IP_ADDRESS = "5.135.152.200";
-
+    static SharedPreferences sharedPreferences;
+    private static String responseApi = "TEST";
 
     public static String callWeightAPI(Context c) throws IOException {
         sharedPreferences = c.getSharedPreferences("prefs", c.MODE_PRIVATE);
@@ -81,10 +77,7 @@ public class ApiCaller {
 
     }
 
-    private static String getWeight(int valEntiere) {
-        return valEntiere > 1000 ? valEntiere * 0.001 + "Kg" : valEntiere + "g";
 
-    }
 
     public static void loginAPI(Context c, String username, String password, String firebaseToken) {
         RequestQueue queue = Volley.newRequestQueue(c);
@@ -127,6 +120,10 @@ public class ApiCaller {
     }
 
     public static void addPanier(String ip, String name) {
+
+    }
+
+    public static void refreshWeight(String ipAddress) {
 
     }
 }

@@ -1,22 +1,18 @@
-package panierconnecte.ocs.mobileapp;
+package panierconnecte.ocs.mobileapp.views;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +20,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import panierconnecte.ocs.mobileapp.AppController;
+import panierconnecte.ocs.mobileapp.R;
 import panierconnecte.ocs.mobileapp.models.Machine;
 import panierconnecte.ocs.mobileapp.utilities.MachineAdapter;
 

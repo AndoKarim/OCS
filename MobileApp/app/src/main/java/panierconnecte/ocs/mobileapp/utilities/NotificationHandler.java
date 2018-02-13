@@ -16,7 +16,7 @@ import android.support.v4.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import panierconnecte.ocs.mobileapp.MainActivity;
+import panierconnecte.ocs.mobileapp.views.MainActivity;
 import panierconnecte.ocs.mobileapp.R;
 
 
