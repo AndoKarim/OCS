@@ -9,7 +9,12 @@
     "connect": "^3.6.5",
     "express": "^4.16.2",
     "fcm-node": "^1.2.1",
-    "server-static": "^2.0.5"
+    "flat-file-db": "^1.0.0",
+    "lowdb": "^1.0.0",
+    "node-ssdp": "^3.2.5",
+    "node-upnp-ssdp": "^0.1.1",
+    "server-static": "^2.0.5",
+    "upnp-ssdp": "0.0.2"
   },
   "apidoc": {
     "title": "OCS - Balance Connectée",
