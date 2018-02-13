@@ -18,6 +18,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 var myRouter = express.Router();
 
+var flatfile = require('flat-file-db');
+var db = flatfile.sync('./tmp/my.db');
+
+var ssdp = require('node-ssdp').Client
+    , clientUpnp = new ssdp()
+
+
+
 function askRasp(param, callback){
  console.log(param);
 
@@ -121,7 +129,7 @@ myRouter.route('/notify')
 });
 
 /**
- * @api {get} /addDevice Add new balance to the box
+ * @api {post} /addDevice Add new balance to the box
  * @apiName AddDevice
  * @apiGroup Device
  *
@@ -147,17 +155,39 @@ myRouter.route('/notify')
  */
 myRouter.route('/addDevice')
 .post(function(req,res){
-
-	var name=req.body.name;
+	name=req.body.name;
 	console.log("We are trying to add a new balance with the name "+name);
 	
 	//TODO faire la decouverte UPNP et ajouter la box
-	res.json({status : "Ok", ip: "192.168.2.1"});
+	
+
+	var prom1 = new Promise(function( resolve ){
+					console.log('test');
+					clientUpnp.on('response', function inResponse(headers, code, rinfo) {
+						console.log('Got a response to an m-search:\n%d\n%s\n%s', code, JSON.stringify(headers, null, '  '), rinfo.address)
+						clientUpnp.stop()
+						//Check si le nom n'existe pas deja ...
+						db.put(name, {ip:rinfo.address}); 
+						resolve(rinfo.address);
+					})
+				});
+
+	clientUpnp.search('urn:schemas-upnp-org:device:BoxBalance:1')
+
+	prom1.then(function(val) {
+		res.json({status : "Ok", ip: val});
+    });
+
+// Or maybe if you want to scour for everything after 5 seconds
+/*setTimeout(function() {
+  client.search('ssdp:all')
+}, 5000)*/
+	//res.json({status : "Ok", ip: "192.168.2.1"});
 
 });
 
 /**
- * @api {get} /removeDevice Remove a balance from the box
+ * @api {post} /removeDevice Remove a balance from the box
  * @apiName RemoveDevice
  * @apiGroup Device
  *
@@ -179,9 +209,11 @@ myRouter.route('/addDevice')
  *       "error": "NoDeviceFound"
  *     }
  */
-myRouter.route('removeDevice')
-.get(function(req,res){
-	
+myRouter.route('/removeDevice')
+.post(function(req,res){
+	name=req.body.name;
+	db.del(name);
+	res.json({status : "Ok"});
 });
 
 
@@ -214,8 +246,10 @@ myRouter.route('removeDevice')
  */
 myRouter.route('/infoDevice')
 .get(function(req,res){
-	
-
+	name = req.params.name
+	console.log(db.has(name));
+	//realiser la requete vers la rasp
+	res.json({status : "Ok"});
 });
 app.use(myRouter);  
 
