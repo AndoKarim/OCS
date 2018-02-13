@@ -7,8 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.github.paolorotolo.appintro.AppIntro;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import panierconnecte.ocs.mobileapp.R;
 import panierconnecte.ocs.mobileapp.utilities.ApiCaller;
@@ -64,7 +69,11 @@ public class SlideActivity extends AppIntro {
         String name = nameEdittext.getText().toString();
 
         String ip = sharedPreferences.getString("BoxIP", null);
-        ApiCaller.addPanier(ip, name);
+        ApiCaller.addPanier(ip, name, getApplicationContext());
+
+
+        finish();
+
         // Do something when users tap on Done button.
     }
 

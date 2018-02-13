@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.ArraySet;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,7 @@ import com._8rine.upnpdiscovery.UPnPDiscovery;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 
 import panierconnecte.ocs.mobileapp.R;
 import panierconnecte.ocs.mobileapp.models.Panier;
@@ -47,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
 
-        Panier panier1 = new Panier("Salle de bain", 13f, "0.0.0.0");
-        Panier panier2 = new Panier("Cuisine", 56f, "0.0.0.0");
-
-        ArrayList list = new ArrayList<>();
-        list.add(panier1);
-        list.add(panier2);
+        Set setList = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            setList = sharedPreferences.getStringSet("paniers", new ArraySet<String>());
+        }
+        ArrayList list = new ArrayList();
+        list.addAll(setList);
 
         PanierAdapter panierAdapter = new PanierAdapter(getApplicationContext(), list);
         listPaniers.setAdapter(panierAdapter);
@@ -115,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
                     if (device.getFriendlyName().equals("BoxBalance")) {
                         SharedPreferences.Editor e = sharedPreferences.edit();
                         e.putString("BoxIP", device.getHostAddress());
+                        e.commit();
+                        Log.d("BoxIP", "TROUVE");
 
                     }
                 }

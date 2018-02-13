@@ -22,7 +22,7 @@ import panierconnecte.ocs.mobileapp.utilities.ApiCaller;
 
 public class PanierAdapter extends ArrayAdapter<ArrayList> {
     private final Context context;
-    private final ArrayList<Panier> paniers;
+    private final ArrayList<String> paniers;
 
     public PanierAdapter(Context context, ArrayList paniers) {
         super(context, -1, paniers);
@@ -30,7 +30,7 @@ public class PanierAdapter extends ArrayAdapter<ArrayList> {
         this.paniers = paniers;
     }
 
-    private static String getWeight(int valEntiere) {
+    public static String getWeight(int valEntiere) {
         return valEntiere > 1000 ? valEntiere * 0.001 + "Kg" : valEntiere + "g";
 
     }
@@ -40,29 +40,36 @@ public class PanierAdapter extends ArrayAdapter<ArrayList> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.activity_panier_adapter, parent, false);
-        RecyclerView.ViewHolder viewHolder;
-        TextView panierNameTextView;
-        TextView panierWeight;
+
+        final TextView panierNameTextView;
+        final TextView panierWeight;
+        panierNameTextView = rowView.findViewById(R.id.panierNameTextView);
+        panierWeight = rowView.findViewById(R.id.poidsBalanceTextview);
         Button refreshButton = rowView.findViewById(R.id.refreshButton);
-        final Panier panier = paniers.get(position);
+
+        final String panier = this.paniers.get(position);
+
+        panierNameTextView.setText(panier);
+
+        panierWeight.setText("?");
+
+
+        /*
+        int weight = Math.round(Integer.valueOf(panier.getWeight()));
+        String weightString = getWeight(weight);
+
+        panierNameTextView.setText(panier.getName());
+        panierWeight.setText(weightString);*/
 
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ApiCaller.refreshWeight(panier.getIpAddress());
+                ApiCaller.refreshWeight(panierNameTextView.getText().toString(),panierWeight, getContext());
             }
         });
 
-        panierNameTextView = rowView.findViewById(R.id.panierNameTextView);
-        panierWeight = rowView.findViewById(R.id.poidsBalanceTextview);
-
-        int weight = Math.round(panier.getWeight());
-        String weightString = getWeight(weight);
-
-        panierNameTextView.setText(panier.getName());
-        panierWeight.setText(weightString);
-
-
         return rowView;
     }
+
+
 }
