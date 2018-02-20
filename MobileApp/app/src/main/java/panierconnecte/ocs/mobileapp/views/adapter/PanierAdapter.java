@@ -46,6 +46,7 @@ public class PanierAdapter extends ArrayAdapter<ArrayList> {
         panierNameTextView = rowView.findViewById(R.id.panierNameTextView);
         panierWeight = rowView.findViewById(R.id.poidsBalanceTextview);
         Button refreshButton = rowView.findViewById(R.id.refreshButton);
+       // Button deleteButton = rowView.findViewById(R.id.rem);
 
         final String panier = this.paniers.get(position);
 

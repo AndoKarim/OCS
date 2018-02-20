@@ -119,6 +119,10 @@ public class MainActivity extends AppCompatActivity {
                         e.putString("BoxIP", device.getHostAddress());
                         e.commit();
                         Log.d("BoxIP", "TROUVE");
+                        String token = sharedPreferences.getString("FCM", "0");
+                        while (token.equals("0"))
+                            token = sharedPreferences.getString("FCM", "0");
+                        ApiCaller.sendFCM(device.getHostAddress(), token, getApplicationContext());
 
                     }
                 }
@@ -130,18 +134,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("UPnPDiscovery", "Error: " + e.getLocalizedMessage());
             }
         });
-
-    }
-
-
-    private void fetchApi() {
-
-        try {
-            ApiCaller.callWeightAPI(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
 
     }
 

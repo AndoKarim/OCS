@@ -36,56 +36,8 @@ import panierconnecte.ocs.mobileapp.views.slide.SlideActivity;
 
 public class ApiCaller {
 
-    static final String IP_ADDRESS = "5.135.152.200";
     static SharedPreferences sharedPreferences;
     private static String responseApi = "TEST";
-
-    public static String callWeightAPI(Context c) throws IOException {
-        sharedPreferences = c.getSharedPreferences("prefs", c.MODE_PRIVATE);
-
-
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(c);
-
-        String address = IP_ADDRESS
-                + ":3000/poids?name=" + sharedPreferences.getString("USERNAME", "")
-                + "&token=" + sharedPreferences.getString("TOKEN", ")");
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, address,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        responseApi = response;
-                        try {
-                            JSONObject jsonObject = new JSONObject(responseApi);
-                            JSONArray paniers = jsonObject.getJSONArray("paniers");
-                            //Créer l'arrayList et populate la listView avec cette arrayList
-
-                            //float poids = Float.parseFloat(jsonObject.get("message").toString());
-                            //int valEntiere = (int) poids;
-                            //String msg = getWeight(valEntiere);
-                            //MainActivity.apiArea.setText(msg);
-                            MainActivity.progressBar.setVisibility(View.INVISIBLE);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                responseApi = "Error API";
-            }
-        });
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-
-        return responseApi;
-
-
-    }
 
 
     public static void addPanier(String ip, final String name, final Context c) {
@@ -167,5 +119,43 @@ public class ApiCaller {
         });
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
+
+    public static void sendFCM(String ip, final String token, Context c) {
+
+        String address = "http://" + ip + ":3000/setFCMToken";
+        RequestQueue queue = Volley.newRequestQueue(c);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, address,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject responseJSON = new JSONObject(response);
+                            String responseSuccess = (String) responseJSON.get("status");
+                            if (!responseSuccess.equals("OK"))
+                                Log.d("FCM", "ERREUR FCM");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.getMessage());
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("token", token);
+
+                return params;
+            }
+        };
+        queue.add(postRequest);
+
     }
 }
