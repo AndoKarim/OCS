@@ -1,18 +1,17 @@
 package panierconnecte.ocs.mobileapp.views.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import panierconnecte.ocs.mobileapp.R;
-import panierconnecte.ocs.mobileapp.models.Panier;
 import panierconnecte.ocs.mobileapp.utilities.ApiCaller;
 
 /**
@@ -36,7 +35,7 @@ public class PanierAdapter extends ArrayAdapter<ArrayList> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.activity_panier_adapter, parent, false);
@@ -46,7 +45,7 @@ public class PanierAdapter extends ArrayAdapter<ArrayList> {
         panierNameTextView = rowView.findViewById(R.id.panierNameTextView);
         panierWeight = rowView.findViewById(R.id.poidsBalanceTextview);
         Button refreshButton = rowView.findViewById(R.id.refreshButton);
-       // Button deleteButton = rowView.findViewById(R.id.rem);
+        ImageButton deleteButton = rowView.findViewById(R.id.deleteButton);
 
         final String panier = this.paniers.get(position);
 
@@ -55,12 +54,15 @@ public class PanierAdapter extends ArrayAdapter<ArrayList> {
         panierWeight.setText("?");
 
 
-        /*
-        int weight = Math.round(Integer.valueOf(panier.getWeight()));
-        String weightString = getWeight(weight);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ApiCaller.removePanier(panierNameTextView.getText().toString(), getContext());
+                paniers.remove(position);
+                notifyDataSetChanged();
+            }
+        });
 
-        panierNameTextView.setText(panier.getName());
-        panierWeight.setText(weightString);*/
 
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override

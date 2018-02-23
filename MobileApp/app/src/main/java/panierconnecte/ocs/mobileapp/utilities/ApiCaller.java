@@ -3,9 +3,7 @@ package panierconnecte.ocs.mobileapp.utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.transition.Slide;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,19 +14,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import panierconnecte.ocs.mobileapp.views.MainActivity;
 import panierconnecte.ocs.mobileapp.views.adapter.PanierAdapter;
-import panierconnecte.ocs.mobileapp.views.slide.SlideActivity;
 
 /**
  * Created by Karim on 17/10/2017.
@@ -157,5 +151,45 @@ public class ApiCaller {
         };
         queue.add(postRequest);
 
+    }
+
+    public static void removePanier(final String text, Context context) {
+        sharedPreferences = context.getSharedPreferences("prefs", context.MODE_PRIVATE);
+
+        String ipAddress = sharedPreferences.getString("BoxIP", "");
+
+        String address = "http://" + ipAddress + ":3000/removeDevice";
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, address,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject responseJSON = new JSONObject(response);
+                            String responseSuccess = (String) responseJSON.get("status");
+                            if (!responseSuccess.equals("OK"))
+                                Log.d("REMOVE", "ERROR REMOVE DEVICE");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.getMessage());
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("name", text);
+
+                return params;
+            }
+        };
+        queue.add(postRequest);
     }
 }

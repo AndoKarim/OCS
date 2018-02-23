@@ -17,13 +17,11 @@ import android.widget.TextView;
 import com._8rine.upnpdiscovery.UPnPDevice;
 import com._8rine.upnpdiscovery.UPnPDiscovery;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 import panierconnecte.ocs.mobileapp.R;
-import panierconnecte.ocs.mobileapp.models.Panier;
 import panierconnecte.ocs.mobileapp.utilities.ApiCaller;
 import panierconnecte.ocs.mobileapp.views.adapter.PanierAdapter;
 import panierconnecte.ocs.mobileapp.views.slide.SlideActivity;
@@ -82,10 +80,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.settings:
-                Intent i = new Intent(this, Settings.class);
-                startActivity(i);
-                return true;
             case R.id.availableMachine:
                 Intent j = new Intent(this, AvaiableMachinesActivity.class);
                 startActivity(j);

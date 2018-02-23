@@ -3,25 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/settings"
-        android:icon="@android:drawable/ic_menu_manage"
-        android:title="Settings" />
-    <item
         android:id="@+id/availableMachine"
         android:icon="@android:drawable/ic_menu_manage"
         android:title="Machines Available" />
 
     <item
         android:id="@+id/refreshBox"
-        android:icon="@drawable/refresh"
-        app:showAsAction="always"
-        android:title="Refresh" />
+        android:actionMenuTextColor="@color/cardview_light_background"
+        android:title="SYNC"
+        app:showAsAction="always" />
+    <!--android:icon="@drawable/refresh"-->
 
     <item
         android:id="@+id/addBalance"
-        android:title="Add"
         android:icon="@drawable/add"
-        app:showAsAction="always"/>
+        android:title="Add"
+        app:showAsAction="always" />
 
 
 </menu>
