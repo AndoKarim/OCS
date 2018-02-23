@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:layout_marginLeft="10dp"
-            android:text="Vous allez maintenant pairer le panier"
+            android:layout_marginStart="10dp"
+            android:text="@string/now_pair"
             android:textColor="@color/cardview_light_background"
             android:textSize="18sp" />
 
@@ -25,7 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:layout_marginLeft="10dp"
-            android:text="Appuyez sur le bouton présent sur le panier."
+            android:layout_marginStart="10dp"
+            android:text="@string/push_button"
             android:textColor="@color/cardview_light_background"
             android:textSize="18sp" />
 
@@ -34,7 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
             android:layout_marginLeft="10dp"
-            android:text="Cliquez ensuite sur le bouton TERMINER en bas de cette page."
+            android:layout_marginStart="10dp"
+            android:text="@string/click_terminate"
             android:textColor="@color/cardview_light_background"
             android:textSize="18sp" />
 
@@ -42,6 +45,8 @@
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
+            android:contentDescription="@string/image_button_click"
             android:src="@drawable/tuto" />
 
     </LinearLayout>

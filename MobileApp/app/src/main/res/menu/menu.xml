@@ -5,19 +5,19 @@
     <item
         android:id="@+id/availableMachine"
         android:icon="@android:drawable/ic_menu_manage"
-        android:title="Machines Available" />
+        android:title="@string/machines_available" />
 
     <item
         android:id="@+id/refreshBox"
         android:actionMenuTextColor="@color/cardview_light_background"
-        android:title="SYNC"
-        app:showAsAction="always" />
+        android:title="@string/sync_button"
+        app:showAsAction="ifRoom" />
     <!--android:icon="@drawable/refresh"-->
 
     <item
         android:id="@+id/addBalance"
         android:icon="@drawable/add"
-        android:title="Add"
+        android:title="@string/add_button"
         app:showAsAction="always" />
 
 

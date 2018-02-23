@@ -17,8 +17,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
-            android:text="Vous allez ajouter un nouveau panier connecté"
+            android:text="@string/new_basket"
             android:textColor="@color/cardview_light_background"
             android:textSize="20sp" />
 
@@ -28,7 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
             android:layout_marginLeft="10dp"
-            android:text="Avant toute chose, choississez un nom"
+            android:layout_marginStart="10dp"
+            android:text="@string/choose_name"
             android:textColor="@color/cardview_light_background"
             android:textSize="20sp" />
 
@@ -37,7 +39,9 @@
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
             android:layout_weight="1"
+            android:contentDescription="@string/pencil_draw_icon"
             app:srcCompat="@drawable/compose" />
 
         <EditText
@@ -46,11 +50,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Nom du panier"
+            android:hint="@string/basket_length"
             android:inputType="textPersonName"
-            android:text="Panier"
+            android:text="@string/basket"
             android:textColor="@color/cardview_light_background" />
 
 

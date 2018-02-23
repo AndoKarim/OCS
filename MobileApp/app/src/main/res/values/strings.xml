@@ -17,4 +17,25 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="now_pair">Vous allez maintenant pairer le panier</string>
+    <string name="push_button">Appuyez sur le bouton présent sur le panier.</string>
+    <string name="click_terminate">Cliquez ensuite sur le bouton TERMINER en bas de cette page.</string>
+    <string name="sync_button">SYNC</string>
+    <string name="add_button">Add</string>
+    <string name="machines_available">Machines Available</string>
+    <string name="machine_number">Machine\'s number</string>
+    <string name="status">Status</string>
+    <string name="example_basket">Romain\'s basket</string>
+    <string name="example_weight">10Kg</string>
+    <string name="basket_icon">Basket Icon</string>
+    <string name="remove_basket_icon">Remove basket</string>
+    <string name="pencil_draw_icon">Pencil draw</string>
+    <string name="choose_name">Avant toute chose, choississez un nom</string>
+    <string name="new_basket">Vous allez ajouter un nouveau panier connecté</string>
+    <string name="basket_length">Nom du panier</string>
+    <string name="basket">Basket</string>
+    <string name="image_button_click">Button click</string>
+    <string name="hello_card">Hello Card</string>
+    <string name="image_machine_description">Image machine description</string>
+    <string name="splash_image">Splash image</string>
 </resources>
