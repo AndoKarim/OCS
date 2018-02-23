@@ -33,8 +33,12 @@ public class ApiCaller {
     private static String responseApi = "TEST";
 
 
-    public static void addPanier(String ip, final String name, final Context c) {
-        String address = "http://" + ip + ":3000/addDevice";
+    private static void postCall(String path, final HashMap<String, String> parameters, Context c) {
+        sharedPreferences = c.getSharedPreferences("prefs", c.MODE_PRIVATE);
+
+        String ipAddress = sharedPreferences.getString("BoxIP", "");
+        String address = "http://" + ipAddress + path;
+
         RequestQueue queue = Volley.newRequestQueue(c);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -43,19 +47,6 @@ public class ApiCaller {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        HashSet<String> paniers = (HashSet<String>) sharedPreferences.getStringSet("paniers", null);
-                        if (paniers == null) {
-                            ArrayList<String> paniersList = new ArrayList<>();
-                            paniersList.add(name);
-                            paniers = new HashSet<>(paniersList);
-                        } else {
-                            if (!paniers.contains(name))
-                                paniers.add(name);
-                            else
-                                Toast.makeText(c, "Le nom de panier existe déjà, veuillez en trouver un autre", Toast.LENGTH_SHORT);
-                        }
-                        editor.putStringSet("paniers", paniers);
-                        editor.commit();
                     }
                 },
                 new Response.ErrorListener() {
@@ -67,14 +58,46 @@ public class ApiCaller {
         ) {
             @Override
             protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("name", name);
-
-                return params;
+                return parameters;
             }
         };
         queue.add(postRequest);
 
+    }
+
+
+    public static void addPanier(final HashMap<String, String> params, final Context c) {
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        String path = ":3000/addDevice";
+        String name = params.get("name");
+
+        HashSet<String> paniers = (HashSet<String>) sharedPreferences.getStringSet("baskets", null);
+        if (paniers == null) {
+            ArrayList<String> paniersList = new ArrayList<>();
+            paniersList.add(name);
+            paniers = new HashSet<>(paniersList);
+        } else {
+            if (!paniers.contains(name)) {
+                paniers.add(name);
+                postCall(path, params, c);
+            } else
+                Toast.makeText(c, "Le nom de panier existe déjà, veuillez en trouver un autre", Toast.LENGTH_SHORT).show();
+        }
+        editor.putStringSet("paniers", paniers);
+        editor.apply();
+    }
+
+    public static void removePanier(final HashMap<String, String> params, Context context) {
+        String path = ":3000/removeDevice";
+        postCall(path, params, context);
+
+
+    }
+
+    public static void sendFCM(final HashMap<String, String> params, Context c) {
+        String path = ":3000/setFCMToken";
+        postCall(path, params, c);
     }
 
     public static void refreshWeight(String name, final TextView textViewWeight, Context c) {
@@ -113,75 +136,5 @@ public class ApiCaller {
         queue.add(stringRequest);
     }
 
-    public static void sendFCM(String ip, final String token, Context c) {
 
-        String address = "http://" + ip + ":3000/setFCMToken";
-        RequestQueue queue = Volley.newRequestQueue(c);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, address,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject responseJSON = new JSONObject(response);
-                            String responseSuccess = (String) responseJSON.get("status");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                    }
-                }
-        ) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("token", token);
-
-                return params;
-            }
-        };
-        queue.add(postRequest);
-
-    }
-
-    public static void removePanier(final String text, Context context) {
-        sharedPreferences = context.getSharedPreferences("prefs", context.MODE_PRIVATE);
-
-        String ipAddress = sharedPreferences.getString("BoxIP", "");
-
-        String address = "http://" + ipAddress + ":3000/removeDevice";
-        RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, address,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject responseJSON = new JSONObject(response);
-                            String responseSuccess = (String) responseJSON.get("status");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                    }
-                }
-        ) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("name", text);
-
-                return params;
-            }
-        };
-        queue.add(postRequest);
-    }
 }

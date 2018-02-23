@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import panierconnecte.ocs.mobileapp.R;
 import panierconnecte.ocs.mobileapp.utilities.ApiCaller;
@@ -57,7 +58,9 @@ public class PanierAdapter extends ArrayAdapter<ArrayList> {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ApiCaller.removePanier(panierNameTextView.getText().toString(), getContext());
+                HashMap<String, String> params = new HashMap<>();
+                params.put("name", panierNameTextView.getText().toString());
+                ApiCaller.removePanier(params, getContext());
                 paniers.remove(position);
                 notifyDataSetChanged();
             }
