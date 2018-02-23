@@ -6,10 +6,10 @@ package panierconnecte.ocs.mobileapp.models;
 
 public class Panier {
     private String name;
-    private float weight;
+    private String weight;
     private String ipAddress;
 
-    public Panier(String name, float weight, String ipAddress) {
+    public Panier(String name, String weight, String ipAddress) {
         this.name = name;
         this.weight = weight;
         this.ipAddress = ipAddress;
@@ -19,7 +19,7 @@ public class Panier {
         return name;
     }
 
-    public float getWeight() {
+    public String getWeight() {
         return weight;
     }
 

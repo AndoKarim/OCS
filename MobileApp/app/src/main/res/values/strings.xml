@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MobileApp</string>
+    <string name="app_name">Smart Panier</string>
     <string name="title_activity_settings">Sign in</string>
 
     <!-- Strings related to login -->
