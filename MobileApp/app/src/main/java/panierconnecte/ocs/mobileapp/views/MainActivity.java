@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.ArraySet;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,6 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com._8rine.upnpdiscovery.UPnPDevice;
 import com._8rine.upnpdiscovery.UPnPDiscovery;
@@ -112,11 +112,11 @@ public class MainActivity extends AppCompatActivity {
                         SharedPreferences.Editor e = sharedPreferences.edit();
                         e.putString("BoxIP", device.getHostAddress());
                         e.commit();
-                        Log.d("BoxIP", "TROUVE");
                         String token = sharedPreferences.getString("FCM", "0");
                         while (token.equals("0"))
                             token = sharedPreferences.getString("FCM", "0");
                         ApiCaller.sendFCM(device.getHostAddress(), token, getApplicationContext());
+                        Toast.makeText(getApplicationContext(), "Box linked", Toast.LENGTH_SHORT);
 
                     }
                 }
@@ -125,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void OnError(Exception e) {
-                Log.d("UPnPDiscovery", "Error: " + e.getLocalizedMessage());
             }
         });
 

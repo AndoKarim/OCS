@@ -3,7 +3,6 @@ package panierconnecte.ocs.mobileapp.utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,7 +62,6 @@ public class ApiCaller {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("Error.Response", error.getMessage());
                     }
                 }
         ) {
@@ -126,8 +124,6 @@ public class ApiCaller {
                         try {
                             JSONObject responseJSON = new JSONObject(response);
                             String responseSuccess = (String) responseJSON.get("status");
-                            if (!responseSuccess.equals("OK"))
-                                Log.d("FCM", "ERREUR FCM");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -137,7 +133,6 @@ public class ApiCaller {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("Error.Response", error.getMessage());
                     }
                 }
         ) {
@@ -167,8 +162,6 @@ public class ApiCaller {
                         try {
                             JSONObject responseJSON = new JSONObject(response);
                             String responseSuccess = (String) responseJSON.get("status");
-                            if (!responseSuccess.equals("OK"))
-                                Log.d("REMOVE", "ERROR REMOVE DEVICE");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -178,7 +171,6 @@ public class ApiCaller {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("Error.Response", error.getMessage());
                     }
                 }
         ) {
