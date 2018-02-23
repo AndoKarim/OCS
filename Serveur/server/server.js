@@ -8,7 +8,7 @@ var fcm = new FCM(serverKey);
 
 var express = require('express'); 
 var bodyParser = require('body-parser');
-var hostname = 'localhost'; 
+var hostname = '192.168.43.97'; 
 var port = 3000; 
 var app = express(); 
 
@@ -23,6 +23,47 @@ var db = flatfile.sync('./tmp/my.db');
 
 var ssdp = require('node-ssdp').Client
     , clientUpnp = new ssdp()
+	
+//UPNP
+var upnp = require("peer-upnp");
+var ip = require("ip");
+var server = http.createServer();
+var PORT = 8080;
+// start server on port 8080. pslease do this step before you create a peer
+server.listen(PORT);
+
+// Create a UPnP Peer. 
+var peer = upnp.createPeer({
+	prefix: "/upnp",
+	server: server
+}).on("ready",function(peer){
+	console.log("ready");
+	// advertise device after peer is ready
+	device.advertise();
+}).on("close",function(peer){
+	console.log("closed");
+}).start();
+
+// Create a BinaryLight device as specified in UPnP http://upnp.org/specs/ha/UPnP-ha-BinaryLight-v1-Device.pdf.  
+// Please refer for device configuration parameters to the UPnP device architecture.
+var device = peer.createDevice({
+	autoAdvertise: false,
+	uuid: "6bd5babgb-b7c8-4f7b-ae6c-a30ccdeb5988",
+	productName: "BoxBalance",
+	productVersion: "0.0.1",
+	domain: "schemas-upnp-org",
+	type: "BoxBalance",
+	version: "1",
+	friendlyName: "BoxBalance",
+	manufacturer: "Anasse",
+	manufacturerURL: "http://anasghira.com",
+	modelName: "BoxBalance",
+	modelDescription: "BoxBalance",
+	modelNumber: "0.0.1",
+	modelURL: "http://anasghira.com",
+	serialNumber: "1g234-1234-1234-1234",
+	UPC: "123456789012"
+});
 
 
 
@@ -159,8 +200,6 @@ myRouter.route('/addDevice')
 	console.log("We are trying to add a new balance with the name "+name);
 	
 	//TODO faire la decouverte UPNP et ajouter la box
-	
-
 	var prom1 = new Promise(function( resolve ){
 					console.log('test');
 					clientUpnp.on('response', function inResponse(headers, code, rinfo) {
@@ -172,7 +211,7 @@ myRouter.route('/addDevice')
 					})
 				});
 
-	clientUpnp.search('urn:schemas-upnp-org:device:BoxBalance:1')
+	clientUpnp.search('urn:schemas-upnp-org:device:Balance:1')
 
 	prom1.then(function(val) {
 		res.json({status : "Ok", ip: val});
@@ -249,9 +288,19 @@ myRouter.route('/infoDevice')
 	name = req.params.name
 	console.log(db.has(name));
 	//realiser la requete vers la rasp
+	res.json({status : "Ok",weight:"15"});
+});
+
+myRouter.route('/setFCMToken')
+.post(function(req,res){
+	token =req.body.token;
+	db.put("FCMToken", token);
+	console.log(token);
 	res.json({status : "Ok"});
 });
-app.use(myRouter);  
+
+
+app.use(myRouter);
 
 app.listen(port, hostname, function(){
   console.log("Mon serveur fonctionne sur http://"+ hostname +":"+port); 
