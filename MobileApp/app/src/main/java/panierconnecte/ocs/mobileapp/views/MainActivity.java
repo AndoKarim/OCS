@@ -18,6 +18,7 @@ import com._8rine.upnpdiscovery.UPnPDevice;
 import com._8rine.upnpdiscovery.UPnPDiscovery;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -115,7 +116,10 @@ public class MainActivity extends AppCompatActivity {
                         String token = sharedPreferences.getString("FCM", "0");
                         while (token.equals("0"))
                             token = sharedPreferences.getString("FCM", "0");
-                        ApiCaller.sendFCM(device.getHostAddress(), token, getApplicationContext());
+
+                        HashMap<String, String> params = new HashMap<>();
+                        params.put("token", token);
+                        ApiCaller.sendFCM(params, getApplicationContext());
                         Toast.makeText(getApplicationContext(), "Box linked", Toast.LENGTH_SHORT);
 
                     }

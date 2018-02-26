@@ -1,19 +1,15 @@
 package panierconnecte.ocs.mobileapp.views.slide;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.github.paolorotolo.appintro.AppIntro;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
 
 import panierconnecte.ocs.mobileapp.R;
 import panierconnecte.ocs.mobileapp.utilities.ApiCaller;
@@ -64,12 +60,12 @@ public class SlideActivity extends AppIntro {
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        SharedPreferences sharedPreferences = getSharedPreferences("prefs", this.MODE_PRIVATE);
         EditText nameEdittext = findViewById(R.id.panierNameEdittext);
         String name = nameEdittext.getText().toString();
 
-        String ip = sharedPreferences.getString("BoxIP", null);
-        ApiCaller.addPanier(ip, name, getApplicationContext());
+        HashMap<String, String> params = new HashMap<>();
+        params.put("name", name);
+        ApiCaller.addPanier(params, getApplicationContext());
 
 
         finish();
